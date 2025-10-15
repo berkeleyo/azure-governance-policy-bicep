@@ -1,4 +1,3 @@
-
 name: Validate Bicep
 on: [push, pull_request]
 jobs:
@@ -6,10 +5,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Install Azure CLI + Bicep
+      - name: Set up Bicep
         run: |
-          curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
+          az --version || curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
           az bicep install
-      - name: Build all bicep
+      - name: Lint/Build
         run: |
           find . -name '*.bicep' -print -exec az bicep build --file {} \;
