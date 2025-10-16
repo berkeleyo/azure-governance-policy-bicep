@@ -1,6 +1,7 @@
-name: bicep-validate
+﻿name: bicep-validate
 on:
-  push:
+  workflow_dispatch:
+push:
     branches: [ "main" ]
   pull_request:
 jobs:
@@ -12,3 +13,4 @@ jobs:
         with:
           files: |
             **/*.bicep
+
